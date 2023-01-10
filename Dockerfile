@@ -74,12 +74,13 @@ RUN echo "src-git oui https://github.com/jorislee/oui.git" >> feeds.conf.default
     && ./scripts/feeds install -a oui
 
 COPY ./HLK-7621A.dts ./target/linux/ramips/dts/HLK-7621A.dts
+COPY ./mt7621.mk ./target/linux/ramips/image/mt7621.mk
 
 RUN rm -f .config* && touch .config && \
     echo "CONFIG_HOST_OS_LINUX=y" >> .config && \
     echo "CONFIG_TARGET_ramips=y" >> .config && \
     echo "CONFIG_TARGET_ramips_mt7621=y" >> .config && \
-    echo "CONFIG_TARGET_ramips_mt7621_DEVICE_hilink_hlk-7621a-evb=y" >> .config && \
+    echo "CONFIG_TARGET_ramips_mt7621_DEVICE_hilink_hlk-7621a=y" >> .config && \
     echo "CONFIG_TARGET_ROOTFS_INITRAMFS=y" >> .config && \
     echo "CONFIG_SDK=y" >> .config && \
     echo "CONFIG_MAKE_TOOLCHAIN=y" >> .config && \
@@ -125,6 +126,23 @@ RUN rm -f .config* && touch .config && \
     make defconfig
 
 RUN make download -j8 \
-    && make -j1 V=w
+    && make -j1 V=w \
+    && rm -rf ./build_dir/toolchain-mipsel_24kc_gcc-7.5.0_musl/ ./build_dir/host/ ./build_dir/hostpkg/ \
+    && cp ./bin/targets/ramips/mt7621/openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64.tar.bz2 /opt \
+    && cp ./bin/targets/ramips/mt7621/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz /home \
+    && cd /opt \
+    && tar -jxvf openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64.tar.bz2 \
+    && rm openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64.tar.bz2 \
+    && cd /home \
+    && tar -J -x -f openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz \
+    && rm openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz \
+    && cd /home/openwrt \
+    && rm -rf ./bin/
 
+ENV STAGING_DIR=/opt/openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64/toolchain-mipsel_24kc_gcc-7.5.0_musl/bin
+WORKDIR /home/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64
+
+RUN make image PROFILE="hilink_hlk-7621a" PACKAGES="wget vim bash"
+
+WORKDIR /home
 CMD [ "/bin/bash" ]
