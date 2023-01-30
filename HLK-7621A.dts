@@ -1,15 +1,17 @@
-// SPDX-License-Identifier: GPL-2.0-or-later
-
 #include "mt7621.dtsi"
 
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/input/input.h>
+
 / {
-	compatible = "mediatek,hlk-mt7621a", "mediatek,mt7621-soc";
-	model = "Mediatek HLK-MT7621A";
+	compatible = "mediatek,hlk-7621a", "mediatek,mt7621-soc";
+	model = "HLK-7621A";
 
 	memory@0 {
 		device_type = "memory";
 		reg = <0x0 0x10000000>;
 	};
+
 	chosen {
 		bootargs = "console=ttyS0,57600";
 	};
@@ -62,7 +64,7 @@
 &pinctrl {
 	state_default: pinctrl0 {
 		gpio {
-			ralink,group = "i2c", "uart2", "uart3", "rgmii2", "jtag";
+			ralink,group = "i2c", "jtag", "uart2", "uart3", "rgmii2";
 			ralink,function = "gpio";
 		};
 	};
