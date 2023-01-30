@@ -324,14 +324,14 @@ define Device/d-team_newifi-d2
 endef
 TARGET_DEVICES += d-team_newifi-d2
 
-define Device/d-team_newifi-d3
-  DTS := Newifi-D3
+define Device/d-team_newifi-hlk
+  DTS := Newifi-HLK
   IMAGE_SIZE := $(ralink_default_fw_size_32M)
-  DEVICE_TITLE := Newifi D3
+  DEVICE_TITLE := Newifi HLK
   DEVICE_PACKAGES := \
 	kmod-mt7603 kmod-mt76x2 kmod-usb3 kmod-usb-ledtrig-usbport wpad-basic
 endef
-TARGET_DEVICES += d-team_newifi-d3
+TARGET_DEVICES += d-team_newifi-hlk
 
 define Device/pbr-m1
   DTS := PBR-M1
