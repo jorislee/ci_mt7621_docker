@@ -92,6 +92,36 @@ RUN rm -f .config* && touch .config && \
     echo "CONFIG_PACKAGE_oui-rpc-core=y" >> .config && \
     echo "CONFIG_PACKAGE_oui-ui-core=y" >> .config && \
     echo "CONFIG_OUI_USE_HOST_NODE=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-core=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-net=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-net-cdc-subset=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-net-rndis=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-serial=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-serial-ipw=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-serial-garmin=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-serial-option=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-serial-qualcomm=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-serial-wwan=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-ohci=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-uhci=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb2=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-usb-wdm=y" >> .config && \
+    echo "CONFIG_PACKAGE_kmod-mii=y" >> .config && \
+    echo "CONFIG_PACKAGE_wwan=y" >> .config && \
+    echo "CONFIG_PACKAGE_chat=y" >> .config && \
+    echo "CONFIG_PACKAGE_ppp=y" >> .config && \
+    echo "CONFIG_PACKAGE_uqmi=y" >> .config && \
+    echo "CONFIG_PACKAGE_umbim=y" >> .config && \
+    echo "CONFIG_PACKAGE_comgt=y" >> .config && \
+    echo "CONFIG_PACKAGE_comgt-ncm=y" >> .config && \
+    echo "CONFIG_PACKAGE_usb-modeswitch=y" >> .config && \
+    echo "CONFIG_PACKAGE_qmi-utils=y" >> .config && \
+    echo "CONFIG_PACKAGE_usbutils=y" >> .config && \
     sed -i 's/^[ \t]*//g' .config && \
     make defconfig
 
