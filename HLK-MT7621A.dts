@@ -3,8 +3,8 @@
 #include "mt7621.dtsi"
 
 / {
-	compatible = "mediatek,hlk-7621a", "mediatek,mt7621-soc";
-	model = "Mediatek HLK-7621A";
+	compatible = "mediatek,hlk-mt7621a", "mediatek,mt7621-soc";
+	model = "Mediatek HLK-MT7621A";
 
 	memory@0 {
 		device_type = "memory";
