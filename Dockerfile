@@ -73,14 +73,14 @@ RUN echo "src-git oui https://github.com/jorislee/oui.git" >> feeds.conf.default
     && ./scripts/feeds update oui \
     && ./scripts/feeds install -a oui
 
-COPY ./HLK-MT7621A.dts ./target/linux/ramips/dts/HLK-MT7621A.dts
+COPY ./HLK-7621A.dts ./target/linux/ramips/dts/HLK-7621A.dts
 COPY ./mt7621.mk ./target/linux/ramips/image/mt7621.mk
 
 RUN rm -f .config* && touch .config && \
     echo "CONFIG_HOST_OS_LINUX=y" >> .config && \
     echo "CONFIG_TARGET_ramips=y" >> .config && \
     echo "CONFIG_TARGET_ramips_mt7621=y" >> .config && \
-    echo "CONFIG_TARGET_ramips_mt7621_DEVICE_mediatek_hlk-mt7621a=y" >> .config && \
+    echo "CONFIG_TARGET_ramips_mt7621_DEVICE_mediatek_hlk-7621a=y" >> .config && \
     echo "CONFIG_TARGET_ROOTFS_INITRAMFS=y" >> .config && \
     echo "CONFIG_SDK=y" >> .config && \
     echo "CONFIG_MAKE_TOOLCHAIN=y" >> .config && \
