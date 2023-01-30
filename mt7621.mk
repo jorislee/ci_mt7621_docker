@@ -324,13 +324,14 @@ define Device/d-team_newifi-d2
 endef
 TARGET_DEVICES += d-team_newifi-d2
 
-define Device/mediatek_hlk-mt7621a
-  DTS := HLK-MT7621A
+define Device/mediatek_hlk-7621a
+  DTS := HLK-7621A
   IMAGE_SIZE := $(ralink_default_fw_size_32M)
-  DEVICE_TITLE := Mediatek HLK-MT7621A
-  DEVICE_PACKAGES := kmod-mt76x2 kmod-usb3
+  DEVICE_TITLE := HLK 7621A
+  DEVICE_PACKAGES := \
+        kmod-mt7603 kmod-mt76x2 kmod-usb3 kmod-usb-ledtrig-usbport wpad-basic
 endef
-TARGET_DEVICES += mediatek_hlk-mt7621a
+TARGET_DEVICES += mediatek_hlk-7621a
 
 define Device/pbr-m1
   DTS := PBR-M1
