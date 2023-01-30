@@ -74,13 +74,12 @@ RUN echo "src-git oui https://github.com/jorislee/oui.git" >> feeds.conf.default
     && ./scripts/feeds install -a oui
 
 COPY ./Newifi-D3.dts ./target/linux/ramips/dts/Newifi-D3.dts
-COPY ./mt7621.mk ./target/linux/ramips/image/mt7621.mk
 
 RUN rm -f .config* && touch .config && \
     echo "CONFIG_HOST_OS_LINUX=y" >> .config && \
     echo "CONFIG_TARGET_ramips=y" >> .config && \
     echo "CONFIG_TARGET_ramips_mt7621=y" >> .config && \
-    echo "CONFIG_TARGET_ramips_mt7621_DEVICE_d-team_newifi-d3=y" >> .config && \
+    echo "CONFIG_TARGET_ramips_mt7621_DEVICE_d-team_newifi-d2=y" >> .config && \
     echo "CONFIG_TARGET_ROOTFS_INITRAMFS=y" >> .config && \
     echo "CONFIG_SDK=y" >> .config && \
     echo "CONFIG_MAKE_TOOLCHAIN=y" >> .config && \
@@ -112,7 +111,7 @@ RUN make download -j8 \
 ENV STAGING_DIR=/opt/openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64/toolchain-mipsel_24kc_gcc-7.5.0_musl/bin
 WORKDIR /home/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64
 
-RUN make image PROFILE="d-team_newifi-d3" PACKAGES="wget vim bash"
+RUN make image PROFILE="d-team_newifi-d2" PACKAGES="wget vim bash"
 
 WORKDIR /home
 CMD [ "/bin/bash" ]
