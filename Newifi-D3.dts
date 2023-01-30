@@ -6,8 +6,8 @@
 #include <dt-bindings/input/input.h>
 
 / {
-	compatible = "d-team,newifi-hlk", "mediatek,mt7621-soc";
-	model = "Newifi-HLK";
+	compatible = "d-team,newifi-d3", "mediatek,mt7621-soc";
+	model = "Newifi-D3";
 
 	memory@0 {
 		device_type = "memory";
