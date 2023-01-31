@@ -73,7 +73,8 @@ RUN echo "src-git oui https://github.com/jorislee/oui.git" >> feeds.conf.default
     && ./scripts/feeds update oui \
     && ./scripts/feeds install -a oui
 
-COPY ./Newifi-D3.dts ./target/linux/ramips/dts/Newifi-D2.dts
+RUN rm ./target/linux/ramips/dts/Newifi-D2.dts
+COPY ./HLK-MT7621A.dts ./target/linux/ramips/dts/Newifi-D2.dts
 
 RUN rm -f .config* && touch .config && \
     echo "CONFIG_HOST_OS_LINUX=y" >> .config && \
@@ -139,7 +140,10 @@ RUN make download -j8 \
     && rm -rf ./bin/
 
 ENV STAGING_DIR=/opt/openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64/toolchain-mipsel_24kc_gcc-7.5.0_musl/bin
+
 WORKDIR /home/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64
+
+RUN make image PROFILE="d-team_newifi-d2" PACKAGES="wget vim bash"
 
 WORKDIR /home
 CMD [ "/bin/bash" ]
