@@ -73,8 +73,7 @@ RUN echo "src-git oui https://github.com/jorislee/oui.git" >> feeds.conf.default
     && ./scripts/feeds update oui \
     && ./scripts/feeds install -a oui
 
-COPY ./Newifi-D3.dts ./target/linux/ramips/dts/Newifi-D3.dts
-COPY ./mt7621.mk ./target/linux/ramips/image/mt7621.mk
+COPY ./Newifi-D3.dts ./target/linux/ramips/dts/Newifi-D2.dts
 
 RUN rm -f .config* && touch .config && \
     echo "CONFIG_HOST_OS_LINUX=y" >> .config && \
