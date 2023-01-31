@@ -139,6 +139,8 @@ RUN make download -j8 \
     && cd /home/openwrt \
     && rm -rf ./bin/
 
+ENV ARCH=mips
+ENV CROSS_COMPILE=/opt/openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64/toolchain-mipsel_24kc_gcc-7.5.0_musl/bin/mipsel-openwrt-linux-
 ENV STAGING_DIR=/opt/openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64/toolchain-mipsel_24kc_gcc-7.5.0_musl/bin
 
 WORKDIR /home/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64
