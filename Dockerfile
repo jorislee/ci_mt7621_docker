@@ -85,6 +85,7 @@ RUN rm -f .config* && touch .config && \
     echo "CONFIG_SDK=y" >> .config && \
     echo "CONFIG_MAKE_TOOLCHAIN=y" >> .config && \
     echo "CONFIG_IB=y" >> .config && \
+    echo "CONFIG_ALL=y" >> .config && \
     echo "CONFIG_PACKAGE_vim=y" >> .config && \
     echo "CONFIG_PACKAGE_bash=y" >> .config && \
     echo "CONFIG_PACKAGE_wget=y" >> .config && \
@@ -127,17 +128,11 @@ RUN rm -f .config* && touch .config && \
 
 RUN make download -j8 \
     && make -j1 V=w \
-    && rm -rf ./build_dir/toolchain-mipsel_24kc_gcc-7.5.0_musl/ ./build_dir/host/ ./build_dir/hostpkg/ \
-    && cp ./bin/targets/ramips/mt7621/openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64.tar.bz2 /opt \
-    && cp ./bin/targets/ramips/mt7621/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz /home \
-    && cd /opt \
-    && tar -jxvf openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64.tar.bz2 \
-    && rm openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64.tar.bz2 \
-    && cd /home \
-    && tar -J -x -f openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz \
-    && rm openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz \
-    && cd /home/openwrt \
-    && rm -rf ./bin/
+    && tar -jxvf ./bin/targets/ramips/mt7621/openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64.tar.bz2 -C /opt/ \
+    && tar -Jxvf ./bin/targets/ramips/mt7621/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz -C /home/ \
+    && mkdir -p /opt/Kernel-mt7621 \
+    && mv ./build_dir/target-mipsel_24kc_musl/linux-ramips_mt7621/linux-4.14.275/ /opt/Kernel-mt7621 \
+    && cd /home && rm -rf ./openwrt
 
 ENV ARCH=mips
 ENV CROSS_COMPILE=/opt/openwrt-toolchain-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64/toolchain-mipsel_24kc_gcc-7.5.0_musl/bin/mipsel-openwrt-linux-
