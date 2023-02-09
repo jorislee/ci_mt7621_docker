@@ -85,7 +85,6 @@ RUN rm -f .config* && touch .config && \
     echo "CONFIG_SDK=y" >> .config && \
     echo "CONFIG_MAKE_TOOLCHAIN=y" >> .config && \
     echo "CONFIG_IB=y" >> .config && \
-    echo "CONFIG_ALL=y" >> .config && \
     echo "CONFIG_PACKAGE_vim=y" >> .config && \
     echo "CONFIG_PACKAGE_bash=y" >> .config && \
     echo "CONFIG_PACKAGE_wget=y" >> .config && \
